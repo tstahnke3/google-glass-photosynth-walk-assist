@@ -48,6 +48,10 @@ import com.google.android.glass.touchpad.Gesture;
 import com.google.android.glass.touchpad.GestureDetector;
 import com.google.android.glass.touchpad.GestureDetector.BaseListener;
 
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.Size;
+
 /*import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.utils.Converters;*/
@@ -309,7 +313,7 @@ public class CuxtomCamActivity extends Activity implements SensorEventListener, 
 		mOverlay = new CameraOverlay(this);
 		previewCameraLayout.addView(mPreview);
 		previewCameraLayout.addView(mOverlay);
-
+        previewCameraLayout.setAlpha(0.5f);
 		setContentView(previewCameraLayout);
 		tv_recordingDuration = new TextView(this);
 		mGestureDetector = new GestureDetector(this);
@@ -438,7 +442,7 @@ public class CuxtomCamActivity extends Activity implements SensorEventListener, 
 		if (keyCode == KeyEvent.KEYCODE_CAMERA) {
 			if (cameraMode == CAMERA_MODE.PHOTO_MODE) {
             //try {
-                mOverlay.setMode(CameraOverlay.Mode.FOCUS);
+                //mOverlay.setMode(CameraOverlay.Mode.FOCUS);
                 mCamera.takePicture(null, null, mPictureCallback);
                 mSoundEffects.shutter();
             //}
@@ -520,6 +524,30 @@ public class CuxtomCamActivity extends Activity implements SensorEventListener, 
                 myMat.put(0,0,data);
                 Mat myEdges = new Mat();
                 org.opencv.imgproc.Imgproc.Canny(myMat,myEdges,200, 600);*/
+                /*Bitmap myBitmap = BitmapFactory.decodeByteArray(data,0,data.length);
+                Mat myMat = new Mat();
+                org.opencv.android.Utils.bitmapToMat(myBitmap, myMat);
+                Mat blurred =  new Mat();
+                Mat blurred2 =  new Mat();
+                org.opencv.imgproc.Imgproc.cvtColor(myMat, blurred2, org.opencv.imgproc.Imgproc.COLOR_RGB2GRAY);
+                Size mySize = new Size();
+                double[] mySizeDouble = {2,2};
+                mySize.set(mySizeDouble);
+                org.opencv.imgproc.Imgproc.blur(blurred2, blurred, mySize);
+                org.opencv.imgproc.Imgproc.Canny(blurred, blurred, 20*1.0, 100*3*1.0, 3, true);
+                org.opencv.android.Utils.matToBitmap(blurred, myBitmap);
+                mOverlay.setBitmap(myBitmap);*/
+                /*for (int j = 0; j < blurred.rows(); j++) {
+                    for (int i = 0; i < blurred.cols(); i++) {
+                        if (blurred.get(j,i)[0] > 0)
+                        {
+                            double[]tmpDouble = {255.0};
+                            blurred.put(j,i, tmpDouble);
+                        }
+
+                    }
+
+                }*/
 
 
 
@@ -537,11 +565,11 @@ public class CuxtomCamActivity extends Activity implements SensorEventListener, 
 				fos.flush();
 				fos.close();
 
-				mOverlay.setMode(CameraOverlay.Mode.PLAIN);
+				/*mOverlay.setMode(CameraOverlay.Mode.PLAIN);
 				Intent intent = new Intent();
 				intent.putExtra(CuxtomIntent.FILE_PATH, f.getPath());
 				intent.putExtra(CuxtomIntent.FILE_TYPE, FILE_TYPE.PHOTO);
-				setResult(RESULT_OK, intent);
+				setResult(RESULT_OK, intent);*/
 				// initiate media scan and put the new things into the path
 				// array to
 				// make the scanner aware of the location and the files you want
@@ -549,6 +577,7 @@ public class CuxtomCamActivity extends Activity implements SensorEventListener, 
 				// see
 				MediaScannerConnection.scanFile(getApplicationContext(), new String[] { f.getPath() }, null,
 						CuxtomCamActivity.this);
+                //issueKey(27);
 			} catch (FileNotFoundException e) {
 				Log.e(TAG, "File not found: " + e.getMessage());
 				setResult(RESULT_CANCELED);
@@ -691,13 +720,22 @@ public class CuxtomCamActivity extends Activity implements SensorEventListener, 
 		}
 
 	}
-
+    private void issueKey(int keyCode)
+    {
+        try {
+            java.lang.Process p = java.lang.Runtime.getRuntime().exec("input keyevent " + Integer.toString(keyCode) + "\n");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 	@Override
 	public void onScanCompleted(String path, Uri uri) {
 		tv_recordingDuration.removeCallbacks(recordingTimer);
-		releaseMediaRecorder();
+		//releaseMediaRecorder();
+        issueKey(27);
 		// previewCameraLayout.removeAllViewsInLayout();
-		CuxtomCamActivity.this.finish();
+		//CuxtomCamActivity.this.finish();
 		Log.e(tag, "Ended");
 	}
 

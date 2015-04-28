@@ -5,7 +5,7 @@
         jar="C:\Users\tristan\AndroidStudioProjects\GlassCamProject\cuXtomCam\build\intermediates\exploded-aar\GlassCamProject\cuXtomCamLibrary\unspecified\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="ff4ea514e291b3c5540bea7fbdc749d5f9133d13">
+        sha1="62176068eea042a6b5c817de18ed8f6ba92b9900">
         <dex dex="C:\Users\tristan\AndroidStudioProjects\GlassCamProject\cuXtomCam\build\intermediates\pre-dexed\debug\classes-58b417df73d5f39313707d0a870811ffcf6e044c.jar" />
     </item>
     <item
@@ -16,11 +16,11 @@
         <dex dex="C:\Users\tristan\AndroidStudioProjects\GlassCamProject\cuXtomCam\build\intermediates\pre-dexed\debug\support-v4-19.1.0-fa396a840067c7ccf208ca1a3049ca6944415950.jar" />
     </item>
     <item
-        jar="C:\Users\tristan\.gradle\caches\modules-2\files-2.1\nu.pattern\opencv\2.4.9-7\dddfd74f94ece97c3f9b131750e63f04669a4d2f\opencv-2.4.9-7.jar"
+        jar="C:\Users\tristan\AndroidStudioProjects\GlassCamProject\cuXtomCam\build\intermediates\exploded-aar\GlassCamProject\openCVLibrary300rc1\unspecified\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="dddfd74f94ece97c3f9b131750e63f04669a4d2f">
-        <dex dex="C:\Users\tristan\AndroidStudioProjects\GlassCamProject\cuXtomCam\build\intermediates\pre-dexed\debug\opencv-2.4.9-7-77f57e488becf8d7b61aee91659017a072663326.jar" />
+        sha1="7716bb19c9bda81b7d93ce8de042464fd49b9850">
+        <dex dex="C:\Users\tristan\AndroidStudioProjects\GlassCamProject\cuXtomCam\build\intermediates\pre-dexed\debug\classes-75d36cd6eb8b4af8e524764548436ca9a5a2cc11.jar" />
     </item>
 
 </items>

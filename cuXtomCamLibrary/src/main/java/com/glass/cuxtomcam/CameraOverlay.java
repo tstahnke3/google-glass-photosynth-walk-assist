@@ -1,6 +1,7 @@
 package com.glass.cuxtomcam;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -23,6 +24,9 @@ public class CameraOverlay extends View {
         mPaint.setColor(Color.BLUE);
         mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStrokeWidth(5);
+        mPaint2.setColor(Color.RED);
+        mPaint2.setFlags(Paint.ANTI_ALIAS_FLAG);
+        mPaint2.setStrokeWidth(5);
 	}
 
     // overlay
@@ -32,16 +36,31 @@ public class CameraOverlay extends View {
      * @param angle Angle of the level line.
      */
     public void setAngle(float angle) {
-        mAngle = angle;
+        float oldAngle = mAngle;
+
         // Redraw the line.
-        invalidate();
+        if (Math.abs(angle - oldAngle) > 0.05) {
+            mAngle = angle;
+            invalidate();
+
+        }
     }
     public float getAngle() {
         return mAngle;
     }
 
     public void setAngle2(float angle) {
-        mAngle2 = angle;
+        float oldAngle = mAngle2;
+
+        if (Math.abs(angle - oldAngle) > 0.05) {
+            mAngle2 = angle;
+            invalidate();
+        }
+
+    }
+
+    public void setBitmap(Bitmap newBitmap) {
+        mBitmap = newBitmap;
         invalidate();
 
     }
@@ -54,15 +73,23 @@ public class CameraOverlay extends View {
         mPaint2.setColor(Color.RED);
         mPaint2.setFlags(Paint.ANTI_ALIAS_FLAG);
         mPaint2.setStrokeWidth(5);
+        mBitmap = null;
 	}
-	
+	Bitmap mBitmap;
 	@Override
 	public void draw(Canvas canvas) {
 		super.draw(canvas);
 		// nothing gets drawn :(
         int width = canvas.getWidth();
         int height = canvas.getHeight() / 2;
-
+        /*if (mBitmap != null) {
+            Bitmap scaledBitmap = mBitmap.createScaledBitmap(mBitmap, width,height,false);
+            Paint myPaint = new Paint();
+            myPaint.setColor(Color.WHITE);
+            myPaint.setStrokeWidth(5);
+            myPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+            canvas.drawBitmap(scaledBitmap,0,0,myPaint);
+        }*/
         // Compute the coordinates.
         float y = (float) Math.tan(mAngle) * width / 2;
 

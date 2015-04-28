@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/cuXtomCam" />
             <option value="$PROJECT_DIR$/cuXtomCamLibrary" />
+            <option value="$PROJECT_DIR$/openCVLibrary300rc1" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -13,6 +13,7 @@ import android.hardware.Camera;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
 
@@ -23,16 +24,47 @@ import com.glass.cuxtomcam.constants.CuxtomIntent.FILE_TYPE;
 import com.google.android.glass.sample.level.LevelService;
 import com.google.android.glass.touchpad.Gesture;
 
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.Size;
+
 public class MainActivity extends Activity {
 	private final int CUXTOM_CAM_REQUEST = 1111;
 	private ImageView mImageView;
 
+    private BaseLoaderCallback mOpenCVCallBack = new BaseLoaderCallback(this) {
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS:
+                {
+                    //Log.i(TAG, "OpenCV loaded successfully");
+                    // Create and set View
+                    setContentView(R.layout.activity_main);
+                    mImageView = (ImageView) findViewById(R.id.mImageView);
+                    startCuxtomCam();
+                } break;
+                default:
+                {
+                    super.onManagerConnected(status);
+                } break;
+            }
+        }
+    };
+
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		mImageView = (ImageView) findViewById(R.id.mImageView);
-		startCuxtomCam();
+        if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mOpenCVCallBack))
+        {
+            //Log.e(TAG, "Cannot connect to OpenCV Manager");
+        }
+
         //Gesture myGesture = Gesture.TAP;
         //issueKey(27);
 	}
@@ -101,17 +133,43 @@ public class MainActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         activityActive = false;
-		/*if (requestCode == CUXTOM_CAM_REQUEST) {
+		if (requestCode == CUXTOM_CAM_REQUEST) {
 			if (resultCode == RESULT_OK) {
 				String path = data.getStringExtra(CuxtomIntent.FILE_PATH);
 				int FIleType = data.getIntExtra(CuxtomIntent.FILE_TYPE,
 						FILE_TYPE.PHOTO);
 				if (FIleType == FILE_TYPE.PHOTO) {
 
-					//BitmapFactory.Options o = new BitmapFactory.Options();
-					//o.inSampleSize = 4;
-					//Bitmap bmp = BitmapFactory.decodeFile(path, o);
-					//mImageView.setImageBitmap(bmp);
+					/*BitmapFactory.Options o = new BitmapFactory.Options();
+					o.inSampleSize = 4;
+					Bitmap bmp = BitmapFactory.decodeFile(path, o);
+
+                    Mat myMat = new Mat(bmp.getWidth(), bmp.getHeight(), CvType.CV_8UC3);
+                    org.opencv.android.Utils.bitmapToMat(bmp, myMat);
+                    Mat blurred =  new Mat(bmp.getWidth(), bmp.getHeight(), CvType.CV_8UC3);
+                    Mat blurred2 =  new Mat(bmp.getWidth(), bmp.getHeight(), CvType.CV_8UC1);
+                    org.opencv.imgproc.Imgproc.cvtColor(myMat, blurred2, org.opencv.imgproc.Imgproc.COLOR_RGB2GRAY);
+                    Size mySize = new Size();
+                    double[] mySizeDouble = {3,3};
+                    mySize.set(mySizeDouble);
+                    org.opencv.imgproc.Imgproc.blur(blurred2, blurred, mySize);
+                    org.opencv.imgproc.Imgproc.Canny(blurred, blurred, 50*1.0, 50*3*1.0, 3, true);
+                    for (int j = 0; j < blurred.rows(); j++) {
+                        for (int i = 0; i < blurred.cols(); i++) {
+                            if (blurred.get(j,i)[0] > 0)
+                            {
+                                double[]tmpDouble = {255.0};
+                                blurred.put(j,i, tmpDouble);
+                            }
+
+                        }
+
+                    }
+                    org.opencv.android.Utils.matToBitmap(blurred, bmp);
+
+                    mImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                    mImageView.setImageBitmap(bmp);
+                    mImageView.setScaleType(ImageView.ScaleType.FIT_XY);*/
 				} else {
 					//Bitmap bmp = ThumbnailUtils
 					//		.createVideoThumbnail(
@@ -123,13 +181,13 @@ public class MainActivity extends Activity {
 
 
 			}
-		}*/
+		}
 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CUXTOM_CAM_REQUEST) {
             if (resultCode == RESULT_OK) {
 
-                String folder = Environment.getExternalStorageDirectory()
+                /*String folder = Environment.getExternalStorageDirectory()
                         + File.separator + Environment.DIRECTORY_PICTURES
                         + File.separator + "CuxtomCam Sample";
                 Intent intent = new Intent(getApplicationContext(),
@@ -139,10 +197,9 @@ public class MainActivity extends Activity {
                 intent.putExtra(CuxtomIntent.FILE_NAME, "walk");
                 //intent.putExtra(CuxtomIntent.VIDEO_DURATION, 20);
                 intent.putExtra(CuxtomIntent.FOLDER_PATH, folder);
-                startActivityForResult(intent, CUXTOM_CAM_REQUEST);
+                startActivityForResult(intent, CUXTOM_CAM_REQUEST);*/
                 activityActive = true;
-
-                CreateWalkTask(1);
+                //CreateWalkTask(1);
             }
         }
 	}

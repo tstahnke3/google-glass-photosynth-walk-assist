@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/GlassCamProject.iml" filepath="$PROJECT_DIR$/GlassCamProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/cuXtomCam/cuXtomCam.iml" filepath="$PROJECT_DIR$/cuXtomCam/cuXtomCam.iml" />
       <module fileurl="file://$PROJECT_DIR$/cuXtomCamLibrary/cuXtomCamLibrary.iml" filepath="$PROJECT_DIR$/cuXtomCamLibrary/cuXtomCamLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openCVLibrary300rc1/openCVLibrary300rc1.iml" filepath="$PROJECT_DIR$/openCVLibrary300rc1/openCVLibrary300rc1.iml" />
     </modules>
   </component>
 </project>

@@ -86,8 +86,8 @@
     <orderEntry type="jdk" jdkName="Android 4.4.2 Glass Development Kit Preview" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
-    <orderEntry type="library" exported="" name="opencv-2.4.9-7" level="project" />
     <orderEntry type="module" module-name="cuXtomCamLibrary" exported="" />
+    <orderEntry type="module" module-name="openCVLibrary300rc1" exported="" />
   </component>
 </module>
 

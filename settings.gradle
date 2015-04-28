@@ -1,2 +1,3 @@
 include ':cuXtomCamLibrary'
 include ':cuXtomCam'
+include ':openCVLibrary300rc1'
