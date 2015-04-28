@@ -1,0 +1,5 @@
+int raw camcorder 0x7f020000
+int raw camcorder_stop 0x7f020001
+int raw camera_shutter 0x7f020002
+int raw error 0x7f020003
+int string lib_name 0x7f030000

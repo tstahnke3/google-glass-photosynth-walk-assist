@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\tristan\AndroidStudioProjects\GlassCamProject\cuXtomCam\build\intermediates\exploded-aar\GlassCamProject\cuXtomCamLibrary\unspecified\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ff4ea514e291b3c5540bea7fbdc749d5f9133d13">
+        <dex dex="C:\Users\tristan\AndroidStudioProjects\GlassCamProject\cuXtomCam\build\intermediates\pre-dexed\debug\classes-58b417df73d5f39313707d0a870811ffcf6e044c.jar" />
+    </item>
+    <item
+        jar="C:\Users\tristan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="C:\Users\tristan\AndroidStudioProjects\GlassCamProject\cuXtomCam\build\intermediates\pre-dexed\debug\support-v4-19.1.0-fa396a840067c7ccf208ca1a3049ca6944415950.jar" />
+    </item>
+    <item
+        jar="C:\Users\tristan\.gradle\caches\modules-2\files-2.1\nu.pattern\opencv\2.4.9-7\dddfd74f94ece97c3f9b131750e63f04669a4d2f\opencv-2.4.9-7.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dddfd74f94ece97c3f9b131750e63f04669a4d2f">
+        <dex dex="C:\Users\tristan\AndroidStudioProjects\GlassCamProject\cuXtomCam\build\intermediates\pre-dexed\debug\opencv-2.4.9-7-77f57e488becf8d7b61aee91659017a072663326.jar" />
+    </item>
+
+</items>
